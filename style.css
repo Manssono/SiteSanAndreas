@@ -1,0 +1,60 @@
+header{
+    height: 400px;
+    background-image: url("https://wallpapers.com/images/featured/fundo-de-grand-theft-auto-p28wj7clynoarng7.jpg");
+    background-size: cover;
+    background-position: center bottom;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    padding-right: 75px;
+    padding-bottom: 50px;
+}
+
+.textoheader{
+    display:flex;
+    flex-direction: column;
+}
+
+body{
+    margin: 0;
+}
+
+
+.logo{
+    font-size:85px;
+    font-weight:bold;
+    color:black;
+    line-height: 85px;
+    margin:0;
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+}
+
+.bloco{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(239, 239, 2);
+    width: 1300px;
+    padding:60px;
+    margin: -70px auto 0 auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+}
+
+.blocoheader{
+    background-color: rgb(239, 239, 2);
+    width: 1500px;
+    margin: -40px auto 0 auto;
+    padding-top: 45px;
+}
+
+.btn{
+    padding: 75px, 75px;
+    background-color: black;
+    border-radius: 25px;
+}
+
