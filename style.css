@@ -1,5 +1,5 @@
 header{
-    height: 400px;
+    height: 560px;
     background-image: url("https://wallpapers.com/images/featured/fundo-de-grand-theft-auto-p28wj7clynoarng7.jpg");
     background-size: cover;
     background-position: center bottom;
@@ -8,8 +8,9 @@ header{
     justify-content: flex-end;
     align-items: center;
 
-    padding-right: 75px;
+    padding-right: 25px;
     padding-bottom: 50px;
+    margin: 0;
 }
 
 .textoheader{
@@ -19,11 +20,15 @@ header{
 
 body{
     margin: 0;
-    background-image: url(imagens/TESTEPNG.jpg);
+    background-image: url(imagens/TESTE.png);
     background-repeat: no-repeat;
     background-size: cover; 
     background-position: center;
     background-attachment: fixed;
+    margin:0;
+    overflow-x: hidden;
+    height:0px;
+
 }
 
 
@@ -31,7 +36,7 @@ body{
     font-size:85px;
     font-weight:bold;
     color:black;
-    line-height: 85px;
+    line-height: 105px;
     margin:0;
     font-family: 'Montserrat', sans-serif;
     text-shadow: 5px 5px 5px rgba(0,0,0,0.5);
@@ -44,7 +49,7 @@ body{
     background-color: rgb(239, 239, 2);
     width: 1200px;
     padding:60px;
-    margin: -70px auto 0 auto;
+    margin: -30px auto 0 auto;
     padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 20px;
@@ -68,7 +73,7 @@ body{
     background-color: rgb(239, 239, 2);
     margin: 0;       /* remove a margem padrão do body */
     padding: 0; 
-    height: 10px;
+    min-height: 10px;
     margin: -40px auto 0 auto;
 }
 
@@ -103,11 +108,11 @@ body{
 
 .blocotexto{
     display:flex;
-    align-items: center;
     justify-content: space-between;
+    flex-direction: column;
     background-color: rgb(255, 255, 255);
-    width: 500px;
-    height: 400px;
+    width: 550px;
+    min-height: 450px;
     padding:60px;
     margin: -70px auto 0 auto;
     padding-top: 10px;
@@ -115,17 +120,62 @@ body{
     border-radius: 20px;
 }
 
-.bloco.imagem img {
-  max-width: 100%;          /* imagem não ultrapassa o bloco */
-  max-height: 100%;         /* imagem não ultrapassa altura do bloco */
-  object-fit: cover;        /* mantém proporção da imagem preenchendo o bloco */
+.janela{
+    width: 600px;   /* largura da área visível */
+    height: 470px;  /* altura da área visível */
+    overflow: hidden;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.blocofooter {
+    width: 100h%;
+    height: 200px;
+    background-color: rgb(0, 0, 0);
+}
+
+
+.textofooter{
+    color:white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    display: inline-block;
+
 }
 
 .container {
-  display: flex;            /* define layout em linha */
-  gap: 20px;                /* espaço entre os blocos */
-  width: 100%;              /* ocupa toda a largura da tela */
-  max-width: 1200px;        /* opcional: largura máxima */
-  margin: 0 auto;           /* centraliza horizontalmente */
+    display: flex; /* Makes the container a flex container */
+    justify-content: space-around; /* Optional: Distributes space evenly */
+    margin:71px;
+}
+.blococarro{
+    width: 400px;
+    height: 450px;
+    background-color: white;
+    overflow: hidden;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
 }
 
+.janela2{
+    width: 350px;
+    height: 300px;
+    padding-top: 25px;
+    overflow: hidden;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover; /* Prevents distortion, crops if necessary */
+    object-position: center; /* Centers the focal point of the image */
+}
