@@ -18,6 +18,8 @@ header{
     flex-direction: column;
 }
 
+
+
 body{
     margin: 0;
     background-image: url(imagens/TESTE.png);
@@ -153,10 +155,13 @@ body{
 }
 
 .container {
-    display: flex; /* Makes the container a flex container */
-    justify-content: space-around; /* Optional: Distributes space evenly */
-    margin:71px;
+    display: flex;
+    flex-wrap: wrap;              /* ⭐ evita cortar */
+    justify-content: center;      /* centraliza grid */
+    gap: 60px;                    /* espaço REAL entre carros */
+    padding: 70px;
 }
+
 .blococarro{
     width: 400px;
     height: 450px;
@@ -167,7 +172,13 @@ body{
     flex-direction: column;
     justify-content: space-between;
     transition: 0.3s;
+    position: relative;
+}
 
+.card-link {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
 }
 
 .blococarro:hover{
@@ -183,4 +194,212 @@ body{
     display: flex;
     object-fit: cover; /* Prevents distortion, crops if necessary */
     object-position: center; /* Centers the focal point of the image */
+    position: relative; 
+    top: 20px; 
+    left: 25px;
+}
+
+.carro-info {
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.carro-nome {
+    font-size: 38px;
+    font-weight: 700;
+    margin: -45px 0;
+    padding-left: 20px;
+    
+}
+
+.carro-detalhes {
+    font-size: 16px;
+    color: #555;
+    margin: 0px 0;
+    padding-top: 20px;
+}
+
+.carro-preco {
+    background-color: yellow;   
+    padding: 6px 14px;
+    border-radius: 25px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #000000;
+    position: relative;
+    top: 15px;
+}
+
+.carro-linha {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 15px;
+    padding-left: 20px;
+}
+
+.blocoaba{
+    width: 86.7%;
+    height: 40%;
+    border-radius: 25px;
+    background-color: white;
+    margin: 0 auto;
+}
+
+.carro-detalhes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    width: 80%;
+    margin: auto;
+    align-items: start;
+}
+
+.specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px 10px;
+}
+
+.spec {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: 14px;
+    color: #777;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.valor {
+    font-size: 30px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.titulo-carro{
+    font-size: 60px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.titulo-linha {
+    display: flex;
+    justify-content: space-between; /* separa lados */
+    align-items: center;
+    width: 100%;
+}
+
+.preco-carro {
+    font-size: 28px;
+    font-weight: bold;
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: auto;
+
+}
+
+.info-carro {
+    justify-self: stretch;
+}
+
+.carro-pagina {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* texto maior que imagem */
+    gap: 60px;
+    align-items: start;
+    width: 90%;
+    margin: auto;
+    padding: 40px 0;
+}
+
+.descricao{
+    font-size: 20px;
+    font-family:  'Montserrat', sans-serif;
+    color: #000;
+}
+
+.galeria-carro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 420px 160px; /* ⭐ controla tamanhos */
+    gap: 15px;
+}
+
+.foto-principal {
+    grid-column: 1 / 3;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.galeria-carro img:not(.foto-principal) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.descricao-carro {
+    margin-top: 40px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.titulo-descricao {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.texto-descricao {
+    font-size: 18px;
+    color: #444;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.contato-carro {
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 2px solid #eee;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.titulo-contato {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.texto-contato {
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.botoes-contato {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-contato {
+    padding: 12px 22px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    transition: 0.25s;
+}
+
+/* cores */
+.whatsapp {
+    background-color: #25D366;
+}
+
+.email {
+    background-color: black;
+}
+
+.btn-contato:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
