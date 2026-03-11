@@ -1,5 +1,5 @@
 header{
-    height: 560px;
+    height: 500px;
     background-image: url("https://wallpapers.com/images/featured/fundo-de-grand-theft-auto-p28wj7clynoarng7.jpg");
     background-size: cover;
     background-position: center bottom;
@@ -44,6 +44,13 @@ body{
     text-shadow: 5px 5px 5px rgba(0,0,0,0.5);
 }
 
+.linkheader{
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    margin: 0 30px 0;
+}
+
 .bloco{
     display:flex;
     align-items: center;
@@ -58,14 +65,13 @@ body{
 }
 
 .blocoheader{
-    display:flex;
-    justify-content: center;
-    align-items: center;
     background-color: rgb(239, 239, 2);
     margin: 0;       /* remove a margem padrão do body */
     padding: 0; 
-    margin: -40px auto 0 auto;
-    padding-top: 45px;
+    height: 90px;  
+    display: flex;
+    justify-content: space-between;   /* centraliza horizontal */
+    align-items: center;  
 }
 
 .bloco_under_header{
@@ -157,14 +163,14 @@ body{
 .container {
     display: flex;
     flex-wrap: wrap;              /* ⭐ evita cortar */
-    justify-content: center;      /* centraliza grid */
-    gap: 60px;                    /* espaço REAL entre carros */
-    padding: 70px;
+    justify-content: flex-start;   /* centraliza grid */
+    gap: 20px;                    /* espaço REAL entre carros */  
+    margin-top: 2.7%;
 }
 
 .blococarro{
-    width: 400px;
-    height: 450px;
+    width: 30%;
+    height: 350px;
     background-color: white;
     overflow: hidden;
     border-radius: 20px;
@@ -187,8 +193,8 @@ body{
 }
 
 .janela2{
-    width: 350px;
-    height: 300px;
+    width: 88%;
+    height: 66%;
     overflow: hidden;
     border-radius: 20px;
     display: flex;
@@ -205,15 +211,15 @@ body{
 }
 
 .carro-nome {
-    font-size: 35px;
+    font-size: 150%;
     font-weight: 700;
-    margin: -40px 0;
+    margin: -25px 0;
     padding-left: 20px;
     
 }
 
 .carro-detalhes {
-    font-size: 16px;
+    font-size: 90%;
     color: #555;
     padding-top: 17px;
     white-space: nowrap;
@@ -223,7 +229,7 @@ body{
     background-color: yellow;   
     padding: 6px 14px;
     border-radius: 25px;
-    font-size: 22px;
+    font-size: 80%;
     font-weight: bold;
     color: #000000;
     position: relative;
@@ -240,7 +246,7 @@ body{
 
 .blocoaba{
     width: 86.7%;
-    height: 40%;
+    height: 55%;
     border-radius: 25px;
     background-color: white;
     margin: 0 auto;
@@ -401,4 +407,50 @@ body{
 .btn-contato:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.pagina-carros {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 35px;
+    max-width: 1400px;   /* ⭐ limite da página */
+    width: 90%;
+    margin: 40px auto;  
+}
+
+.filtros {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    height: fit-content;
+    position: sticky;
+    top: 120px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.filtros label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.filtros input,
+.filtros select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.btn-filtrar {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 20px;
+    background: black;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
 }

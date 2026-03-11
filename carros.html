@@ -23,7 +23,12 @@
 </head>
 
 
-<div class = "blocoheader" ></div>
+<div class = "blocoheader">
+    <a href="index.html" class = "linkheader">Início</a>
+    <a href="carros.html" class = "linkheader"> Carros</a>
+    <a href="cadastro.html" class = "linkheader">Anunciar</a>
+    <a href="Login.html" class = "linkheader">Login</a>
+</div>
 
 
 <header>
@@ -47,6 +52,30 @@
         <a href="#filtro" class="btn_buscar">⌕</a>
 </div>
 
+
+
+
+<div class="pagina-carros">
+
+    <!-- FILTROS -->
+    <aside class="filtros">
+        <h2>Filtros</h2>
+
+        <label>Marca</label>
+        <select>
+            <option>Todos</option>
+            <option>Fiat</option>
+            <option>Volkswagen</option>
+        </select>
+
+        <label>Ano</label>
+        <input type="number" placeholder="A partir de">
+
+        <label>Preço máximo</label>
+        <input type="number" placeholder="R$">
+
+        <button class="btn-filtrar">Aplicar</button>
+    </aside>
 <div class ="container" style="position: relative; top:-50px">
     <div class = "blococarro" style="position: relative; top: 20px;"> <img class = "janela2" src="imagens/Fiat_Palio_5door.JPG">
         <a href="carro.html" class="card-link">        </a>
@@ -72,6 +101,7 @@
         </div></div>
     
     <div class = "blococarro" style="position: relative; top: 20px"></div>
+</div>
 </div>
 
 </body>
