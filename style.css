@@ -29,7 +29,7 @@ body{
     background-attachment: fixed;
     margin:0;
     overflow-x: hidden;
-    height: 1800px;
+    height: 1747px;
 
 }
 
@@ -45,10 +45,15 @@ body{
 }
 
 .linkheader{
-    color: #000;
+    color: black;
     font-family: 'Montserrat', sans-serif;
     font-size: 30px;
     margin: 0 30px 0;
+    padding: 10px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bolder;
+
 }
 
 .bloco{
@@ -68,7 +73,7 @@ body{
     background-color: rgb(239, 239, 2);
     margin: 0;       /* remove a margem padrão do body */
     padding: 0; 
-    height: 90px;  
+    height: 55px;  
     display: flex;
     justify-content: space-between;   /* centraliza horizontal */
     align-items: center;  
@@ -164,12 +169,12 @@ body{
     display: flex;
     flex-wrap: wrap;              /* ⭐ evita cortar */
     justify-content: flex-start;   /* centraliza grid */
-    gap: 20px;                    /* espaço REAL entre carros */  
+    gap: 11.5px;                  /* espaço REAL entre carros */  
     margin-top: 2.7%;
 }
 
 .blococarro{
-    width: 30%;
+    width: 31.1%;
     height: 350px;
     background-color: white;
     overflow: hidden;
@@ -412,10 +417,10 @@ body{
 .pagina-carros {
     display: grid;
     grid-template-columns: 280px 1fr;
-    gap: 35px;
+    gap: 10px;
     max-width: 1400px;   /* ⭐ limite da página */
     width: 90%;
-    margin: 40px auto;  
+    margin: 10px 0px 40px 101px;  
 }
 
 .filtros {
@@ -436,7 +441,7 @@ body{
 
 .filtros input,
 .filtros select {
-    width: 100%;
+    width: 90%;
     padding: 8px;
     margin-top: 5px;
     border-radius: 8px;
@@ -453,4 +458,214 @@ body{
     color: white;
     font-weight: bold;
     cursor: pointer;
+}
+
+.bloco-cadastro{
+    width: 85%;
+    max-width: 1100px;
+    margin: 20px auto;
+    background: white;
+    padding: 50px;
+    border-radius: 25px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.titulo-cadastro{
+    font-size: 45px;
+    margin-bottom: 30px;
+}
+
+.secao-cadastro{
+    margin-top: 40px;
+}
+
+.titulo-secao{
+    font-size: 28px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* GRID IGUAL DAS SPECS DO CARRO */
+.specs-cadastro{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 30px;
+}
+
+.campo{
+    display: flex;
+    flex-direction: column;
+}
+
+.campo label{
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.campo input,
+.campo select{
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.descricao-input{
+    width: 100%;
+    min-height: 150px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.btn-publicar{
+    margin-top: 40px;
+    width: 100%;
+    padding: 18px;
+    border: none;
+    border-radius: 25px;
+    background: black;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.btn-publicar:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.login-container{
+    width: 400px;
+    margin: 120px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 25px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.titulo-login{
+    font-size: 40px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.form-login{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.campo-login{
+    display: flex;
+    flex-direction: column;
+}
+
+.campo-login label{
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.campo-login input{
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.btn-login{
+    margin-top: 10px;
+    padding: 15px;
+    border: none;
+    border-radius: 25px;
+    background: black;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.25s;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-login:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.texto-cadastro{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.texto-cadastro a{
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.cadastrarconta{
+    width: 500px;
+    margin: 80px auto;
+    background: white;
+    padding: 50px;
+    border-radius: 25px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.titulo-cadastro{
+    font-size: 38px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-cadastro{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.campo-cadastro{
+    display: flex;
+    flex-direction: column;
+}
+
+.campo-cadastro label{
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.campo-cadastro input{
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+.btn-cadastro{
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 25px;
+    border: none;
+    background: black;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.btn-cadastro:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.texto-login{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.texto-login a{
+    font-weight: bold;
+    text-decoration: none;
 }
