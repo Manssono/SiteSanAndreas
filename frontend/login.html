@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+<meta charset="UTF-8">
+<title>Login - Southern San Andreas Super Autos</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body style="height:100vh; overflow:hidden;">
+
+<div class="login-container">
+
+    <h1 class="titulo-login">Login</h1>
+
+    <form class="form-login" id="formLogin">
+
+        <div class="campo-login">
+            <label>Email</label>
+            <input type="email" id="emailLogin" placeholder="Digite seu email" required>
+        </div>
+
+        <div class="campo-login">
+            <label>Senha</label>
+            <input type="password" id="senhaLogin" placeholder="Digite sua senha" required>
+        </div>
+
+        <!-- Botão de submit em vez do <a> -->
+        <button type="submit" class="btn-login">Entrar</button>
+
+        <p class="texto-cadastro">
+            Não possui conta? 
+            <a href="cadastrarconta.html">Criar conta</a>
+        </p>
+
+    </form>
+
+</div>
+
+<script>
+document.getElementById("formLogin").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById("emailLogin").value.trim();
+    const senha = document.getElementById("senhaLogin").value;
+
+    try {
+        // Pega todos os usuários cadastrados (GET /usuarios)
+        const resposta = await fetch("http://localhost:3000/usuarios");
+        const usuarios = await resposta.json();
+
+        // Verifica se o email e senha existem
+        const usuario = usuarios.find(u => u.email === email && u.senha === senha);
+
+        if(usuario){
+            alert("Login realizado com sucesso!");
+            // Redireciona para a página inicial
+            window.location.href = "index.html";
+        } else {
+            alert("Email ou senha incorretos!");
+        }
+
+    } catch(err){
+        console.error("Erro ao conectar ao servidor:", err);
+        alert("Não foi possível conectar ao servidor.");
+    }
+});
+</script>
+
+</body>
+</html>
