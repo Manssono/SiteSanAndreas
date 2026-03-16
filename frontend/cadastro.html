@@ -1,185 +1,216 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anunciar Carro - Southern San Andreas</title>
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
-
-<head>
-
-    <meta charset="UTF-8">
-    <title>
-        Souther SanAndreas Super Autos
-    </title>
-    
 </head>
-
-
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-
-<div class = "blocoheader">
-    <a href="index.html" class = "linkheader" style="margin-left: 100px;"> Início </a>
-    <p>|</p>
-    <a href="carros.html" class = "linkheader"> Carros </a>
-    <p>|</p>
-    <a href="cadastro.html" class = "linkheader"> Anunciar </a>
-    <p>|</p>
-    <a href="Login.html" class = "linkheader" style="margin-right: 100px;"> Login </a>
-</div>
-
-
-<header>
-    
-    <div class = "textoheader">
-        <h1 class= "logo" style="font-size: 90px;">Southern</h1>
-        <h1 class="logo" style="color:yellow; font-size: 130px;">San Andreas</h1>
-        <h1 class="logo" style="font-size: 90px;">Super Autos.com</h1>
-        <p style="font-size: 30px; font-weight: bold; font-family: 'Montserrat', sans-serif; text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5); color: white; position: relative; left: 250px">MEETING YOUR VEHICULAR NEEDS</p>
-    </div>
-    
-</header>
-
-<div class = "bloco_under_header" style="position:relative; top: 40px"></div>
-
-<div class = "bloco" style="position: sticky; top: 0; z-index: 10;">
-    <p style="font-size: 35px; font-weight: bold;font-family: 'Montserrat', sans-serif; color: black;">Anuncie seu Carro
-        
-    </p>
-        <a href="index.html" class="btn" style="font-size: 40px; position: relative; left: 311.5px; width: 149px; height: 50px;">Início</a>
-        <a href="#filtro" class="btn_buscar">⌕</a>
-</div>
 
 <body>
-    <div class="bloco-cadastro">
 
+<!-- HEADER -->
+<div class="blocoheader">
+    <a href="index.html" class="linkheader" style="margin-left: 100px;">Início</a>
+    <p>|</p>
+    <a href="carros.html" class="linkheader">Carros</a>
+    <p>|</p>
+    <a href="cadastro.html" class="linkheader">Anunciar</a>
+    <p>|</p>
+    <a href="login.html" id="linkUsuario" class="linkheader" style="margin-right: 100px;">Login</a>
+
+    <div id="menuConta" class="dropdownConta" style="margin-right: 55px; margin-top: 5px;">
+        <button id="btnLogout">Sair</button>
+    </div>
+</div>
+
+<!-- Banner -->
+<header>
+    <div class="textoheader">
+        <h1 class="logo" style="font-size: 90px;">Southern</h1>
+        <h1 class="logo" style="color:yellow; font-size: 130px;">San Andreas</h1>
+        <h1 class="logo" style="font-size: 90px;">Super Autos.com</h1>
+        <p style="font-size: 30px; font-weight: bold; font-family:'Montserrat', sans-serif; text-shadow:5px 5px 5px rgba(0,0,0,0.5); color:white; position:relative; left:250px">
+            MEETING YOUR VEHICULAR NEEDS
+        </p>
+    </div>
+</header>
+
+<div class="bloco_under_header" style="position:relative; top: 40px"></div>
+
+<div class="bloco" style="position: sticky; top:0; z-index:10;">
+    <p style="font-size:35px; font-weight:bold;font-family:'Montserrat',sans-serif;color:black">Anuncie seu Carro</p>
+    <a href="index.html" class="btn" style="font-size:40px; position:relative; left:311.5px; width:149px; height:50px;">Início</a>
+    <a href="#filtro" class="btn_buscar">⌕</a>
+</div>
+
+<script>
+    // Só permite entrar se estiver logado
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+    if (!usuarioLogado) {
+        alert("Você precisa estar logado para anunciar um carro.");
+        window.location.href = "/frontend/login.html";
+    }
+</script>
+
+<!-- Formulário de cadastro -->
+<div class="bloco-cadastro">
     <h1 class="titulo-cadastro">Anunciar veículo</h1>
 
-    <form class="form-cadastro">
+    <form class="form-cadastro" id="formCarro">
 
-        <!-- ESPECIFICAÇÕES -->
+        <!-- Especificações -->
         <section class="secao-cadastro">
             <h2 class="titulo-secao">Especificações</h2>
-
             <div class="specs-cadastro">
-
-                <div class="campo">
-                    <label>Marca</label>
-                    <input type="text">
-                </div>
-
-                <div class="campo">
-                    <label>Modelo</label>
-                    <input type="text">
-                </div>
-
-                <div class="campo">
-                    <label>Ano</label>
-                    <input type="number">
-                </div>
-
-                <div class="campo">
-                    <label>Quilometragem</label>
-                    <input type="number">
-                </div>
-
-                <div class="campo">
-                    <label>Motor</label>
-                    <input type="text">
-                </div>
-
-                <div class="campo">
-                    <label>Versão</label>
-                    <input type="text">
-                </div>
-
-                <div class="campo">
-                    <label>Câmbio</label>
-                    <select>
+                <div class="campo"><label>Marca</label><input type="text" id="marca" required></div>
+                <div class="campo"><label>Modelo</label><input type="text" id="modelo" required></div>
+                <div class="campo"><label>Ano</label><input type="number" id="ano" required></div>
+                <div class="campo"><label>Quilometragem</label><input type="number" id="quilometragem" required></div>
+                <div class="campo"><label>Motor</label><input type="text" id="motor" required></div>
+                <div class="campo"><label>Versão</label><input type="text" id="versao" required></div>
+                <div class="campo"><label>Câmbio</label>
+                    <select id="cambio">
                         <option>Manual</option>
                         <option>Automático</option>
                     </select>
                 </div>
-
-                <div class="campo">
-                    <label>Combustível</label>
-                    <select>
+                <div class="campo"><label>Combustível</label>
+                    <select id="combustivel">
                         <option>Flex</option>
                         <option>Gasolina</option>
                         <option>Diesel</option>
                     </select>
                 </div>
-
+                <div class="campo"><label>Preço (R$)</label><input type="number" id="preco" required></div>
             </div>
         </section>
 
-        <!-- DESCRIÇÃO -->
+        <!-- Descrição -->
         <section class="secao-cadastro">
             <h2 class="titulo-secao">Descrição</h2>
-
-            <textarea class="descricao-input"
-                placeholder="Descreva o veículo...">
-            </textarea>
+            <textarea id="descricao" class="descricao-input" placeholder="Descreva o veículo..." required></textarea>
         </section>
 
-        <!-- FOTOS -->
+        <!-- Fotos -->
         <section class="secao-cadastro">
             <h2 class="titulo-secao">Fotos</h2>
-
-            <input type="file" multiple>
+            <input type="file" id="fotosCarro" multiple accept="image/*">
         </section>
 
-        <!-- CONTATO -->
+        <!-- Contato -->
         <section class="secao-cadastro">
             <h2 class="titulo-secao">Contato</h2>
-
             <div class="specs-cadastro">
-
-                <div class="campo">
-                    <label>Nome</label>
-                    <input type="text">
-                </div>
-
-                <div class="campo">
-                    <label>Telefone</label>
-                    <input type="text">
-                </div>
-
-                <div class="campo">
-                    <label>Email</label>
-                    <input type="email">
-                </div>
-
-                <div class="campo">
-                    <label>Cidade</label>
-                    <input type="text">
-                </div>
-
+                <div class="campo"><label>Nome</label><input type="text" id="contatoNome" required></div>
+                <div class="campo"><label>Telefone</label><input type="text" id="contatoTelefone" required></div>
+                <div class="campo"><label>Email</label><input type="email" id="contatoEmail" required></div>
+                <div class="campo"><label>Cidade</label><input type="text" id="contatoCidade" required></div>
             </div>
         </section>
 
-        <button class="btn-publicar">Publicar anúncio</button>
-
+        <button type="submit" class="btn-publicar">Publicar anúncio</button>
     </form>
 </div>
-<div class = "bloco_under_header" style="margin-top: 20px;"></div>
-<div class = "blocofooter" style="text-align: left;padding: 30px; ">
-    <div style = " display: flex; flex-direction: row; width: 100%;justify-content: space-between;">
-        <p class = "textofooter" style = "align-self: flex-start;">Southern<br>SanAndreas<br>Super<br>Auto</p>
-        <p class = "textofooter" style = "align-self: center;">Contato<br><br>
+
+<div class="bloco_under_header" style="margin-top:20px;"></div>
+
+<!-- Footer -->
+<div class="blocofooter" style="text-align:left;padding:30px;">
+    <div style="display:flex; flex-direction:row; width:100%; justify-content:space-between;">
+        <p class="textofooter" style="align-self:flex-start;">Southern<br>SanAndreas<br>Super<br>Auto</p>
+        <p class="textofooter" style="align-self:center;">Contato<br><br>
         Telefone: (123) 456-7890<br><br>
         Email: contato@southernautos.com</p>
-        <p class = "textofooter" style = "align-self: flex-end; position: relative; top: -50px">Redes Sociais<br><br>
-Facebook | Instagram | Twitter</p>
-        
+        <p class="textofooter" style="align-self:flex-end; position:relative; top:-50px">Redes Sociais<br><br>
+        Facebook | Instagram | Twitter</p>
     </div>
-    <p class = "textofooter" style = "">© 2026 Southern San Andreas Super Autos. Todos os direitos reservados. 
-Política de Privacidade | Termos de Uso</p>
+    <p class="textofooter">© 2026 Southern San Andreas Super Autos. Todos os direitos reservados. 
+    Política de Privacidade | Termos de Uso</p>
 </div>
-</body>
 
+<!-- Script -->
+<script>
+document.getElementById("formCarro").addEventListener("submit", async function(e){
+    e.preventDefault();
+
+    const arquivos = document.getElementById("fotosCarro").files;
+    const fotosBase64 = [];
+
+    for (let i = 0; i < arquivos.length; i++) {
+        const file = arquivos[i];
+        const base64 = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+            reader.readAsDataURL(file);
+        });
+        fotosBase64.push(base64);
+    }
+
+    const carro = {
+        marca: document.getElementById("marca").value.toUpperCase(),
+        modelo: document.getElementById("modelo").value.toUpperCase(),
+        ano: document.getElementById("ano").value,
+        quilometragem: document.getElementById("quilometragem").value,
+        motor: document.getElementById("motor").value.toUpperCase(),
+        versao: document.getElementById("versao").value.toUpperCase(),
+        cambio: document.getElementById("cambio").value.toUpperCase(),
+        combustivel: document.getElementById("combustivel").value.toUpperCase(),
+        preco: document.getElementById("preco").value,
+        descricao: document.getElementById("descricao").value.trim().charAt(0).toUpperCase() +
+                   document.getElementById("descricao").value.trim().slice(1),
+        contatoNome: document.getElementById("contatoNome").value.toUpperCase(),
+        contatoTelefone: document.getElementById("contatoTelefone").value,
+        contatoEmail: document.getElementById("contatoEmail").value,
+        contatoCidade: document.getElementById("contatoCidade").value.toUpperCase(),
+        anunciante: usuarioLogado.nome,
+        fotos: fotosBase64
+    };
+
+    try {
+        const resposta = await fetch("http://localhost:3000/carros", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(carro)
+        });
+
+        const dados = await resposta.json();
+
+        if (resposta.ok) {
+            alert("Carro cadastrado com sucesso!");
+            window.location.href = "carros.html";
+        } else {
+            alert(dados.erro || "Erro ao anunciar o carro");
+        }
+    } catch (erro) {
+        console.error("Erro de conexão:", erro);
+        alert("Não foi possível conectar ao servidor.");
+    }
+});
+
+// Script de menu e logout
+const linkUsuario = document.getElementById("linkUsuario");
+const menuConta = document.getElementById("menuConta");
+const btnLogout = document.getElementById("btnLogout");
+
+if(usuarioLogado){
+    const primeiroNome = usuarioLogado.nome.split(" ")[0];
+    linkUsuario.textContent = "Olá " + primeiroNome;
+    linkUsuario.href = "#";
+
+    linkUsuario.addEventListener("click", function(e){
+        e.preventDefault();
+        menuConta.classList.toggle("ativo");
+    });
+}
+
+btnLogout.addEventListener("click", function(){
+    localStorage.removeItem("usuarioLogado");
+    window.location.href = "/frontend/login.html";
+});
+</script>
+
+</body>
 </html>

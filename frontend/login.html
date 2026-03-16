@@ -58,8 +58,10 @@ document.getElementById("formLogin").addEventListener("submit", async function(e
 
         if(usuario){
             alert("Login realizado com sucesso!");
+            localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
             // Redireciona para a página inicial
             window.location.href = "index.html";
+
         } else {
             alert("Email ou senha incorretos!");
         }

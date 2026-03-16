@@ -1,111 +1,155 @@
 <!DOCTYPE html>
-<html lang="pt">
-
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carros - Southern San Andreas</title>
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
-
-<head>
-
-    <meta charset="UTF-8">
-    <title>
-        Souther SanAndreas Super Autos
-    </title>
-    
 </head>
+<body>
 
-
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-
-<div class = "blocoheader">
-    <a href="index.html" class = "linkheader" style="margin-left: 100px;"> Início </a>
+<!-- HEADER -->
+<div class="blocoheader">
+    <a href="index.html" class="linkheader" style="margin-left: 100px;">Início</a>
     <p>|</p>
-    <a href="carros.html" class = "linkheader"> Carros </a>
+    <a href="carros.html" class="linkheader">Carros</a>
     <p>|</p>
-    <a href="cadastro.html" class = "linkheader"> Anunciar </a>
+    <a href="cadastro.html" class="linkheader">Anunciar</a>
     <p>|</p>
-    <a href="Login.html" class = "linkheader" style="margin-right: 100px;"> Login </a>
+    <a href="login.html" id="linkUsuario" class="linkheader" style="margin-right: 100px;">Login</a>
+
+    <div id="menuConta" class="dropdownConta" style="margin-right: 55px; margin-top: 5px;">
+        <button id="btnLogout">Sair</button>
+    </div>
 </div>
-
 
 <header>
-    
-    <div class = "textoheader">
-        <h1 class= "logo" style="font-size: 90px;">Southern</h1>
+    <div class="textoheader">
+        <h1 class="logo" style="font-size: 90px;">Southern</h1>
         <h1 class="logo" style="color:yellow; font-size: 130px;">San Andreas</h1>
         <h1 class="logo" style="font-size: 90px;">Super Autos.com</h1>
-        <p style="font-size: 30px; font-weight: bold; font-family: 'Montserrat', sans-serif; text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5); color: white; position: relative; left: 250px">MEETING YOUR VEHICULAR NEEDS</p>
+        <p style="font-size: 30px; font-weight: bold; font-family:'Montserrat', sans-serif; text-shadow:5px 5px 5px rgba(0,0,0,0.5); color:white; position:relative; left:250px">
+            MEETING YOUR VEHICULAR NEEDS
+        </p>
     </div>
-    
 </header>
 
-<div class = "bloco_under_header" style="position:relative; top: 40px"></div>
+<div class="bloco_under_header" style="position:relative; top: 40px"></div>
 
-<div class = "bloco" style="position: sticky; top: 0; z-index: 10;">
-    <p style="font-size: 35px; font-weight: bold;font-family: 'Montserrat', sans-serif; color: black">Novidades Exclusivas
-        
+<div class="bloco" style="position: sticky; top: 0; z-index: 10;">
+    <p style="font-size: 35px; font-weight: bold;font-family:'Montserrat', sans-serif; color:black">
+        Novidades Exclusivas
     </p>
-        <a href="index.html" class="btn" style="font-size: 40px; position: relative; left: 284px; width: 149px; height: 50px;">Início</a>
-        <a href="#filtro" class="btn_buscar">⌕</a>
+    <a href="index.html" class="btn" style="font-size: 40px; position: relative; left: 284px; width:149px; height:50px;">Início</a>
+    <a href="#filtro" class="btn_buscar">⌕</a>
 </div>
 
-
-
-
+<!-- CONTAINER DE CARROS -->
 <div class="pagina-carros">
-
-    <!-- FILTROS -->
     <aside class="filtros">
         <h2>Filtros</h2>
-
         <label>Marca</label>
-        <select>
+        <select id="filtroMarca">
             <option>Todos</option>
-            <option>Fiat</option>
-            <option>Volkswagen</option>
         </select>
-
         <label>Ano</label>
-        <input type="number" placeholder="A partir de">
-
+        <input type="number" id="filtroAno" placeholder="A partir de">
         <label>Preço máximo</label>
-        <input type="number" placeholder="R$">
-
-        <button class="btn-filtrar">Aplicar</button>
+        <input type="number" id="filtroPreco" placeholder="R$">
+        <button class="btn-filtrar" id="btnFiltrar">Aplicar</button>
     </aside>
-<div class ="container" style="position: relative; top:-50px">
-    <div class = "blococarro" style="position: relative; top: 20px;"> <img class = "janela2" src="imagens/Fiat_Palio_5door.JPG">
-        <a href="carro.html" class="card-link">        </a>
-        <div class="carro-info">
-            <p class="carro-nome">FIAT PALIO</p>
 
+    <div class="container" id="containerCarros" style="position: relative; top:-50px">
+        <!-- carros carregados via JS -->
+    </div>
+</div>
+
+
+
+<!-- SCRIPT -->
+<script>
+const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+const linkUsuario = document.getElementById("linkUsuario");
+const menuConta = document.getElementById("menuConta");
+const btnLogout = document.getElementById("btnLogout");
+
+if(usuario){
+    const primeiroNome = usuario.nome.split(" ")[0];
+    linkUsuario.textContent = "Olá " + primeiroNome;
+    linkUsuario.href = "#";
+    linkUsuario.addEventListener("click", function(e){
+        e.preventDefault();
+        menuConta.classList.toggle("ativo");
+    });
+}
+
+btnLogout.addEventListener("click", function(){
+    localStorage.removeItem("usuarioLogado");
+    window.location.href = "/frontend/login.html";
+});
+
+// Função para criar o HTML de cada carro
+function criarCarroHTML(carro){
+    return `
+    <div class="blococarro" style="position: relative; top: 20px;">
+        <img class="janela2" src="${carro.fotos && carro.fotos.length > 0 ? carro.fotos[0] : 'imagens/placeholder.png'}">
+        <a href="carro.html?id=${carro.id}" class="card-link"></a>
+        <div class="carro-info">
+            <p class="carro-nome">${carro.marca} ${carro.modelo}</p>
             <div class="carro-linha">
-                <p class="carro-detalhes">1.0 Fire<br>2001 | 90000km</p>
-                <p class="carro-preco">R$10.000,00</p>
+                <p class="carro-detalhes">${carro.motor} ${carro.versao}<br>${carro.ano} | ${carro.quilometragem}km</p>
+                <p class="carro-preco">R$${parseFloat(carro.preco).toLocaleString('pt-BR', {minimumFractionDigits:2})}</p>
             </div>
         </div>
-    </div>
-    <div class = "blococarro" style="position: relative; top: 20px"> <img class="janela2" src="imagens/images.jpg">
-    
-    <a href="carro.html" class="card-link">        </a>
-        <div class="carro-info">
-            <p class="carro-nome">TOYOTA YARIS</p>
+    </div>`;
+}
 
-            <div class="carro-linha">
-                <p class="carro-detalhes">1.5 XS<br>2024 | 12548km</p>
-                <p class="carro-preco">R$100.000,00</p>
-            </div>
-        </div></div>
-    
-    <div class = "blococarro" style="position: relative; top: 20px"></div>
-</div>
-</div>
+// Função para carregar carros
+async function carregarCarros(){
+    try {
+        const resposta = await fetch("http://localhost:3000/carros");
+        const carros = await resposta.json();
+
+        const container = document.getElementById("containerCarros");
+        container.innerHTML = carros.map(criarCarroHTML).join("");
+
+        // popular filtro de marcas
+        const selectMarca = document.getElementById("filtroMarca");
+        const marcas = [...new Set(carros.map(c => c.marca))];
+        marcas.forEach(m => {
+            const option = document.createElement("option");
+            option.textContent = m;
+            selectMarca.appendChild(option);
+        });
+    } catch(erro){
+        console.error("Erro ao carregar carros:", erro);
+    }
+}
+
+// Filtro
+document.getElementById("btnFiltrar").addEventListener("click", async function(){
+    const marca = document.getElementById("filtroMarca").value;
+    const ano = document.getElementById("filtroAno").value;
+    const preco = document.getElementById("filtroPreco").value;
+
+    try {
+        const resposta = await fetch("http://localhost:3000/carros");
+        let carros = await resposta.json();
+
+        if(marca !== "Todos") carros = carros.filter(c => c.marca === marca);
+        if(ano) carros = carros.filter(c => c.ano >= ano);
+        if(preco) carros = carros.filter(c => parseFloat(c.preco) <= preco);
+
+        const container = document.getElementById("containerCarros");
+        container.innerHTML = carros.map(criarCarroHTML).join("");
+    } catch(erro){
+        console.error("Erro ao filtrar carros:", erro);
+    }
+});
+
+carregarCarros();
+</script>
 
 </body>
 </html>

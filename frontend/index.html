@@ -22,7 +22,11 @@
     <p>|</p>
     <a href="cadastro.html" class = "linkheader"> Anunciar </a>
     <p>|</p>
-    <a href="Login.html" class = "linkheader" style="margin-right: 100px;"> Login </a>
+    <a href="login.html" id="linkUsuario" class="linkheader" style="margin-right: 100px;">Login</a>
+
+<div id="menuConta" class="dropdownConta" style="margin-right: 55px; margin-top: 5px;">
+    <button id="btnLogout">Sair</button>
+</div>
 </div>
 
 
@@ -98,9 +102,36 @@ Facebook | Instagram | Twitter</p>
 Política de Privacidade | Termos de Uso</p>
 </div> 
 
-        
+<script>
 
+const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+const linkUsuario = document.getElementById("linkUsuario");
+const menuConta = document.getElementById("menuConta");
+const btnLogout = document.getElementById("btnLogout");
 
+if(usuario){
+
+    const primeiroNome = usuario.nome.split(" ")[0];
+
+    linkUsuario.textContent = "Olá " + primeiroNome;
+    linkUsuario.href = "#";
+
+    linkUsuario.addEventListener("click", function(e){
+        e.preventDefault();
+        menuConta.classList.toggle("ativo");
+    });
+
+}
+
+btnLogout.addEventListener("click", function(){
+
+    localStorage.removeItem("usuarioLogado");
+
+    window.location.href = "/frontend/login.html";
+
+});
+
+</script>
 
 </body>
 

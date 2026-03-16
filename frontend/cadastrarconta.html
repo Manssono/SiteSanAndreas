@@ -66,12 +66,10 @@ document.getElementById("formCadastro").addEventListener("submit", async functio
         const dados = await resposta.json();
 
         if (resposta.ok) {
-            alert(dados.mensagem);
-            // redireciona pelo Express
-            window.location.href = "login.html";
-        } else {
-            alert(dados.erro || "Ocorreu um erro ao cadastrar"); // alerta de erro
-        }
+            window.location.href = "/frontend/login.html";
+} else {
+    alert(dados.erro || "Ocorreu um erro ao cadastrar");
+}
 
     } catch (erro) {
         console.error("Erro de conexão:", erro);
@@ -80,5 +78,14 @@ document.getElementById("formCadastro").addEventListener("submit", async functio
 });
 </script>
 
+<div id="popupCadastro" class="popup">
+
+    <div class="popup-conteudo">
+        <h2>Conta criada!</h2>
+        <p>Seu cadastro foi realizado com sucesso.</p>
+        <button id="btnIrLogin">Ir para login</button>
+    </div>
+
+</div>
 </body>
 </html>
