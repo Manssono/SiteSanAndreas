@@ -1,196 +1,217 @@
 <!DOCTYPE html>
-<html lang="pt">
-    <link rel="stylesheet" href="style.css">
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalhes do Carro - Southern San Andreas</title>
+<link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-<head>
 
-    <meta charset="UTF-8">
-    <title>
-        Souther SanAndreas Super Autos
-    </title>
-    
 </head>
-    
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <div class = "blocoheader">
-    <a href="index.html" class = "linkheader" style="margin-left: 100px;"> Início </a>
-    <p>|</p>
-    <a href="carros.html" class = "linkheader"> Carros </a>
-    <p>|</p>
-    <a href="cadastro.html" class = "linkheader"> Anunciar </a>
-    <p>|</p>
-    <div class="menuUsuario">
 
-    <a href="login.html" id="linkUsuario" class="linkheader">Login</a>
+<body>
 
-    <div id="menuConta" class="dropdownConta">
+<!-- HEADER -->
+<div class="blocoheader">
+    <a href="index.html" class="linkheader" style="margin-left: 100px;">Início</a>
+    <p>|</p>
+    <a href="carros.html" class="linkheader">Carros</a>
+    <p>|</p>
+    <a href="cadastro.html" class="linkheader">Anunciar</a>
+    <p>|</p>
+    <a href="login.html" id="linkUsuario" class="linkheader" style="margin-right: 100px;">Login</a>
+
+    <div id="menuConta" class="dropdownConta" style="margin-right: 55px; margin-top: 5px;">
         <button id="btnLogout">Sair</button>
     </div>
 </div>
-</head>
 
-<div class = "blocoheader"></div>
-
-<header style="height: 350px; margin-top: -55px">
-    
-    
-    <div class = "textoheader" style="padding-bottom: 30px;">
-        <h1 class= "logo" style="font-size: 70px;">Southern</h1>
+<header style="height: 350px; margin-top: px">
+    <div class="textoheader" style="padding-bottom: 30px;">
+        <h1 class="logo" style="font-size: 70px;">Southern</h1>
         <h1 class="logo" style="color:yellow; font-size: 110px;">San Andreas</h1>
         <h1 class="logo" style="font-size: 70px;">Super Autos.com</h1>
-            </div>
-    
+    </div>
 </header>
-<div class = "bloco_under_header" style="position:relative; top: 40px"></div>
 
-<div class = "bloco" style="position: sticky; top: 0; z-index: 10;">
-    <p style="font-size: 35px; font-weight: bold;font-family: 'Montserrat', sans-serif; color: black">Fiat Palio
-        
-    </p>
-        <a href="carros.html" class="btn" style="font-size: 40px; width: 149px; height: 50px;">Voltar</a>
+<div class="bloco_under_header" style="position:relative; top: 40px"></div>
+
+<div class="bloco" style="position: sticky; top: 0; z-index: 10;">
+    <p class="titulo-carro-topo" style="font-size: 35px; font-weight: bold; font-family: 'Montserrat', sans-serif; color:black"></p>
+    <a href="carros.html" class="btn" style="font-size: 40px; width: 149px; height: 50px;">Voltar</a>
 </div>
 
 <div class="blocoaba" style="margin-top: 30px;">
-
     <div class="carro-pagina">
 
-    <!-- lado esquerdo -->
-    <div class="info-carro">
+        <!-- ESQUERDA -->
+        <div class="info-carro">
+            <div class="titulo-linha">
+                <p class="titulo-carro"></p>
+                <p class="preco-carro"></p>
+            </div>
 
-        <div class="titulo-linha">
-            <h1 class="titulo-carro">Fiat Palio</h1>
-            <p class="preco-carro">R$ 10.000</p>
+            <div class="specs">
+                <div class="spec"><span class="label">Ano</span><span class="valor" id="spec-ano"></span></div>
+                <div class="spec"><span class="label">KM</span><span class="valor" id="spec-km"></span></div>
+                <div class="spec"><span class="label">Motor</span><span class="valor" id="spec-motor"></span></div>
+                <div class="spec"><span class="label">Versão</span><span class="valor" id="spec-versao"></span></div>
+                <div class="spec"><span class="label">Câmbio</span><span class="valor" id="spec-cambio"></span></div>
+                <div class="spec"><span class="label">Combustível</span><span class="valor" id="spec-combustivel"></span></div>
+            </div>
+
+            <div class="descricao-carro">
+                <h2 class="titulo-descricao">Descrição</h2>
+                <p class="texto-descricao"></p>
+
+                <div class="contato-carro">
+                    <h2 class="titulo-contato">Contato</h2>
+                    <p class="texto-contato">
+                        Interessado neste veículo? Entre em contato:
+                    </p>
+                    <div class="botoes-contato">
+                        <a href="#" target="_blank" class="btn-contato whatsapp">WhatsApp</a>
+                        <a href="#" class="btn-contato email">Email</a>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="specs">
-
-            <div class="spec">
-                <span class="label">Ano</span>
-                <span class="valor">2001</span>
-            </div>
-
-            <div class="spec">
-                <span class="label">KM</span>
-                <span class="valor">90.000</span>
-            </div>
-
-            <div class="spec">
-                <span class="label">Motor</span>
-                <span class="valor">1.0</span>
-            </div>
-
-            <div class="spec">
-                <span class="label">Versão</span>
-                <span class="valor">Fire</span>
-            </div>
-
-            <div class="spec">
-                <span class="label">Câmbio</span>
-                <span class="valor">Manual</span>
-            </div>
-
-            <div class="spec">
-                <span class="label">Combustível</span>
-                <span class="valor">Flex</span>
-            </div>
-
-            <div class="spec">
-                <span class="label">Carroceria</span>
-                <span class="valor">Hatch</span>
-            </div>
-
-            <div class="spec">
-                <span class="label">Cor</span>
-                <span class="valor">Prata</span>
-            </div>
-
+        <!-- DIREITA -->
+        <div class="imagem-carro">
+            <div class="galeria-carro" id="galeria-carro"></div>
         </div>
 
-        <div class="descricao-carro">
-
-    <h2 class="titulo-descricao">Descrição</h2>
-
-    <p class="texto-descricao">
-        Fiat Palio Fire 1.0, econômico e ideal para uso urbano.
-        Veículo bem conservado, manutenção em dia, pneus novos
-        e documentação regularizada. Ótima opção para primeiro carro.
-    </p>
-
-    <div class="contato-carro">
-
-    <h2 class="titulo-contato">Contato</h2>
-
-    <p class="texto-contato">
-        Interessado neste veículo? Entre em contato conosco:
-    </p>
-
-    <div class="botoes-contato">
-
-        <a href="https://wa.me/5599999999999" target="_blank" class="btn-contato whatsapp">
-            WhatsApp
-        </a>
-
-        <a href="mailto:contato@southernautos.com" class="btn-contato email">
-            Email
-        </a>
-
     </div>
-
 </div>
 
-</div>
+<div class ="bloco_under_header" style = "position: relative; top: 80px"></div>    
+<div class = "blocofooter" style="position: relative; top: 80px; text-align: left;padding: 30px; ">
+    <div style = " display: flex; flex-direction: row; width: 100%;justify-content: space-between;">
+        <p class = "textofooter" style = "align-self: flex-start;">Southern<br>SanAndreas<br>Super<br>Auto</p>
+        <p class = "textofooter" style = "align-self: center;">Contato<br><br>
+        Telefone: (123) 456-7890<br><br>
+        Email: contato@southernautos.com</p>
+        <p class = "textofooter" style = "align-self: flex-end; position: relative; top: -50px">Redes Sociais<br><br>
+Facebook | Instagram | Twitter</p>
+        
     </div>
+    <p class = "textofooter" style = "">© 2026 Southern San Andreas Super Autos. Todos os direitos reservados. 
+Política de Privacidade | Termos de Uso</p>
+</div> 
 
-    <!-- lado direito -->
-    <div class="imagem-carro">
-
-    <div class="galeria-carro">
-
-        <img class="foto-principal" src="imagens/Fiat_Palio_5door.JPG">
-
-        <img src="imagens/palio_lado.jpg">
-        <img src="imagens/palio_interior.jpg">
-
-    </div>
-
-</div>
-
-</div>
-</div>
-
-<body>
 <script>
-
+// USUÁRIO
 const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
 const linkUsuario = document.getElementById("linkUsuario");
 const menuConta = document.getElementById("menuConta");
 const btnLogout = document.getElementById("btnLogout");
 
 if(usuario){
-
     const primeiroNome = usuario.nome.split(" ")[0];
-
     linkUsuario.textContent = "Olá " + primeiroNome;
     linkUsuario.href = "#";
-
     linkUsuario.addEventListener("click", function(e){
         e.preventDefault();
         menuConta.classList.toggle("ativo");
     });
-
 }
 
 btnLogout.addEventListener("click", function(){
-
     localStorage.removeItem("usuarioLogado");
-
     window.location.href = "/frontend/login.html";
-
 });
 
+// PEGAR ID
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+if(!id){
+    alert("Carro não especificado!");
+    window.location.href = "carros.html";
+}
+
+// CARREGAR CARRO
+async function carregarCarro(){
+    try{
+        const resposta = await fetch("http://localhost:3000/carros");
+const carros = await resposta.json();
+
+const carro = carros.find(c => c.id == id);
+
+if(!carro) throw new Error("Carro não encontrado");
+
+        // FORMATAR
+        const precoFormatado = Number(carro.preco).toLocaleString('pt-BR', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+
+        const kmFormatado = Number(carro.quilometragem).toLocaleString('pt-BR');
+
+        // TEXTO
+        document.querySelector(".titulo-carro-topo").textContent = `${carro.marca} ${carro.modelo}`;
+        document.querySelector(".titulo-carro").textContent = `${carro.marca} ${carro.modelo}`;
+        document.querySelector(".preco-carro").textContent = `R$ ${precoFormatado}`;
+
+        document.getElementById("spec-ano").textContent = carro.ano;
+        document.getElementById("spec-km").textContent = kmFormatado;
+        document.getElementById("spec-motor").textContent = carro.motor;
+        document.getElementById("spec-versao").textContent = carro.versao;
+        document.getElementById("spec-cambio").textContent = carro.cambio;
+        document.getElementById("spec-combustivel").textContent = carro.combustivel;
+
+        document.querySelector(".texto-descricao").textContent = carro.descricao;
+
+        // CONTATO
+        document.querySelector(".whatsapp").href =
+            `https://wa.me/${carro.contatoTelefone.replace(/\D/g,'')}`;
+
+        document.querySelector(".email").href =
+            `mailto:${carro.contatoEmail}`;
+
+        // GALERIA
+        const galeria = document.getElementById("galeria-carro");
+        galeria.innerHTML = "";
+
+        if(carro.fotos && carro.fotos.length){
+            const principal = document.createElement("img");
+            principal.src = carro.fotos[0];
+            principal.classList.add("foto-principal");
+            galeria.appendChild(principal);
+
+            const thumbs = document.createElement("div");
+            thumbs.classList.add("thumbs");
+
+            carro.fotos.forEach(foto => {
+                const img = document.createElement("img");
+                img.src = foto;
+                img.classList.add("thumb");
+
+                img.addEventListener("click", () => {
+                    principal.src = foto;
+                });
+
+                thumbs.appendChild(img);
+            });
+
+            galeria.appendChild(thumbs);
+
+        } else {
+            const img = document.createElement("img");
+            img.src = "imagens/sem-foto.jpg";
+            img.classList.add("foto-principal");
+            galeria.appendChild(img);
+        }
+
+    }catch(err){
+        alert(err.message);
+        window.location.href = "carros.html";
+    }
+}
+
+carregarCarro();
 </script>
+
 </body>
 </html>

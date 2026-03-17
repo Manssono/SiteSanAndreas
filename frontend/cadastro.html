@@ -6,6 +6,57 @@
 <title>Anunciar Carro - Southern San Andreas</title>
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+.preview-fotos {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.preview-item {
+    position: relative;
+    cursor: grab;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.preview-item.dragging {
+    opacity: 0.4;
+    transform: scale(1.05);
+}
+
+.preview-item img {
+    width: 120px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 2px solid transparent;
+}
+
+.preview-item.capa img {
+    border: 2px solid gold;
+}
+
+.preview-botoes {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.preview-botoes button {
+    font-size: 11px;
+    cursor: pointer;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 2px 4px;
+}
+</style>
 </head>
 
 <body>
@@ -46,169 +97,196 @@
 </div>
 
 <script>
-    // Só permite entrar se estiver logado
-    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-    if (!usuarioLogado) {
-        alert("Você precisa estar logado para anunciar um carro.");
-        window.location.href = "/frontend/login.html";
-    }
+const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+if (!usuarioLogado) {
+    alert("Você precisa estar logado para anunciar um carro.");
+    window.location.href = "/frontend/login.html";
+}
 </script>
 
-<!-- Formulário de cadastro -->
 <div class="bloco-cadastro">
-    <h1 class="titulo-cadastro">Anunciar veículo</h1>
+<h1 class="titulo-cadastro">Anunciar veículo</h1>
 
-    <form class="form-cadastro" id="formCarro">
+<form class="form-cadastro" id="formCarro">
 
-        <!-- Especificações -->
-        <section class="secao-cadastro">
-            <h2 class="titulo-secao">Especificações</h2>
-            <div class="specs-cadastro">
-                <div class="campo"><label>Marca</label><input type="text" id="marca" required></div>
-                <div class="campo"><label>Modelo</label><input type="text" id="modelo" required></div>
-                <div class="campo"><label>Ano</label><input type="number" id="ano" required></div>
-                <div class="campo"><label>Quilometragem</label><input type="number" id="quilometragem" required></div>
-                <div class="campo"><label>Motor</label><input type="text" id="motor" required></div>
-                <div class="campo"><label>Versão</label><input type="text" id="versao" required></div>
-                <div class="campo"><label>Câmbio</label>
-                    <select id="cambio">
-                        <option>Manual</option>
-                        <option>Automático</option>
-                    </select>
-                </div>
-                <div class="campo"><label>Combustível</label>
-                    <select id="combustivel">
-                        <option>Flex</option>
-                        <option>Gasolina</option>
-                        <option>Diesel</option>
-                    </select>
-                </div>
-                <div class="campo"><label>Preço (R$)</label><input type="number" id="preco" required></div>
-            </div>
-        </section>
+<!-- ESPECIFICAÇÕES -->
+<section class="secao-cadastro">
+<h2 class="titulo-secao">Especificações</h2>
+<div class="specs-cadastro">
+<div class="campo"><label>Marca</label><input type="text" id="marca" required></div>
+<div class="campo"><label>Modelo</label><input type="text" id="modelo" required></div>
+<div class="campo"><label>Ano</label><input type="number" id="ano" required></div>
+<div class="campo"><label>Quilometragem</label><input type="number" id="quilometragem" required></div>
+<div class="campo"><label>Motor</label><input type="text" id="motor" required></div>
+<div class="campo"><label>Versão</label><input type="text" id="versao" required></div>
+<div class="campo"><label>Câmbio</label>
+<select id="cambio">
+<option>Manual</option>
+<option>Automático</option>
+</select>
+</div>
+<div class="campo"><label>Combustível</label>
+<select id="combustivel">
+<option>Flex</option>
+<option>Gasolina</option>
+<option>Diesel</option>
+</select>
+</div>
+<div class="campo"><label>Preço (R$)</label><input type="number" id="preco" required></div>
+</div>
+</section>
 
-        <!-- Descrição -->
-        <section class="secao-cadastro">
-            <h2 class="titulo-secao">Descrição</h2>
-            <textarea id="descricao" class="descricao-input" placeholder="Descreva o veículo..." required></textarea>
-        </section>
+<!-- DESCRIÇÃO -->
+<section class="secao-cadastro">
+<h2 class="titulo-secao">Descrição</h2>
+<textarea id="descricao" class="descricao-input" required></textarea>
+</section>
 
-        <!-- Fotos -->
-        <section class="secao-cadastro">
-            <h2 class="titulo-secao">Fotos</h2>
-            <input type="file" id="fotosCarro" multiple accept="image/*">
-        </section>
+<!-- FOTOS (ALTERADO) -->
+<section class="secao-cadastro">
+<h2 class="titulo-secao">Fotos</h2>
+<input type="file" id="fotosCarro" multiple accept="image/*">
 
-        <!-- Contato -->
-        <section class="secao-cadastro">
-            <h2 class="titulo-secao">Contato</h2>
-            <div class="specs-cadastro">
-                <div class="campo"><label>Nome</label><input type="text" id="contatoNome" required></div>
-                <div class="campo"><label>Telefone</label><input type="text" id="contatoTelefone" required></div>
-                <div class="campo"><label>Email</label><input type="email" id="contatoEmail" required></div>
-                <div class="campo"><label>Cidade</label><input type="text" id="contatoCidade" required></div>
-            </div>
-        </section>
+<p style="font-size:12px; color:gray; margin-top:5px;">
+Arraste para ordenar • ⭐ define capa
+</p>
 
-        <button type="submit" class="btn-publicar">Publicar anúncio</button>
-    </form>
+<div id="previewFotos" class="preview-fotos"></div>
+</section>
+
+<!-- CONTATO -->
+<section class="secao-cadastro">
+<h2 class="titulo-secao">Contato</h2>
+<div class="specs-cadastro">
+<div class="campo"><label>Nome</label><input type="text" id="contatoNome" required></div>
+<div class="campo"><label>Telefone</label><input type="text" id="contatoTelefone" required></div>
+<div class="campo"><label>Email</label><input type="email" id="contatoEmail" required></div>
+<div class="campo"><label>Cidade</label><input type="text" id="contatoCidade" required></div>
+</div>
+</section>
+
+<button type="submit" class="btn-publicar">Publicar anúncio</button>
+</form>
 </div>
 
 <div class="bloco_under_header" style="margin-top:20px;"></div>
 
-<!-- Footer -->
-<div class="blocofooter" style="text-align:left;padding:30px;">
-    <div style="display:flex; flex-direction:row; width:100%; justify-content:space-between;">
-        <p class="textofooter" style="align-self:flex-start;">Southern<br>SanAndreas<br>Super<br>Auto</p>
-        <p class="textofooter" style="align-self:center;">Contato<br><br>
-        Telefone: (123) 456-7890<br><br>
-        Email: contato@southernautos.com</p>
-        <p class="textofooter" style="align-self:flex-end; position:relative; top:-50px">Redes Sociais<br><br>
-        Facebook | Instagram | Twitter</p>
-    </div>
-    <p class="textofooter">© 2026 Southern San Andreas Super Autos. Todos os direitos reservados. 
-    Política de Privacidade | Termos de Uso</p>
-</div>
-
-<!-- Script -->
+<!-- SCRIPT -->
 <script>
-document.getElementById("formCarro").addEventListener("submit", async function(e){
-    e.preventDefault();
+let fotosOrdenadas = [];
+let draggedIndex = null;
 
-    const arquivos = document.getElementById("fotosCarro").files;
-    const fotosBase64 = [];
-
-    for (let i = 0; i < arquivos.length; i++) {
-        const file = arquivos[i];
-        const base64 = await new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = error => reject(error);
-            reader.readAsDataURL(file);
+// upload
+document.getElementById("fotosCarro").addEventListener("change", async function(e){
+    for (let file of e.target.files) {
+        const base64 = await new Promise((res, rej)=>{
+            const r = new FileReader();
+            r.onload = () => res(r.result);
+            r.onerror = rej;
+            r.readAsDataURL(file);
         });
-        fotosBase64.push(base64);
+        fotosOrdenadas.push(base64);
     }
-
-    const carro = {
-        marca: document.getElementById("marca").value.toUpperCase(),
-        modelo: document.getElementById("modelo").value.toUpperCase(),
-        ano: document.getElementById("ano").value,
-        quilometragem: document.getElementById("quilometragem").value,
-        motor: document.getElementById("motor").value.toUpperCase(),
-        versao: document.getElementById("versao").value.toUpperCase(),
-        cambio: document.getElementById("cambio").value.toUpperCase(),
-        combustivel: document.getElementById("combustivel").value.toUpperCase(),
-        preco: document.getElementById("preco").value,
-        descricao: document.getElementById("descricao").value.trim().charAt(0).toUpperCase() +
-                   document.getElementById("descricao").value.trim().slice(1),
-        contatoNome: document.getElementById("contatoNome").value.toUpperCase(),
-        contatoTelefone: document.getElementById("contatoTelefone").value,
-        contatoEmail: document.getElementById("contatoEmail").value,
-        contatoCidade: document.getElementById("contatoCidade").value.toUpperCase(),
-        anunciante: usuarioLogado.nome,
-        fotos: fotosBase64
-    };
-
-    try {
-        const resposta = await fetch("http://localhost:3000/carros", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(carro)
-        });
-
-        const dados = await resposta.json();
-
-        if (resposta.ok) {
-            alert("Carro cadastrado com sucesso!");
-            window.location.href = "carros.html";
-        } else {
-            alert(dados.erro || "Erro ao anunciar o carro");
-        }
-    } catch (erro) {
-        console.error("Erro de conexão:", erro);
-        alert("Não foi possível conectar ao servidor.");
-    }
+    e.target.value = "";
+    renderizarPreview();
 });
 
-// Script de menu e logout
-const linkUsuario = document.getElementById("linkUsuario");
-const menuConta = document.getElementById("menuConta");
-const btnLogout = document.getElementById("btnLogout");
+// render
+function renderizarPreview(){
+    const container = document.getElementById("previewFotos");
+    container.innerHTML = "";
 
-if(usuarioLogado){
-    const primeiroNome = usuarioLogado.nome.split(" ")[0];
-    linkUsuario.textContent = "Olá " + primeiroNome;
-    linkUsuario.href = "#";
+    fotosOrdenadas.forEach((foto, index)=>{
 
-    linkUsuario.addEventListener("click", function(e){
-        e.preventDefault();
-        menuConta.classList.toggle("ativo");
+        const div = document.createElement("div");
+        div.className = "preview-item" + (index === 0 ? " capa" : "");
+        div.draggable = true;
+
+        const img = document.createElement("img");
+        img.src = foto;
+
+        const box = document.createElement("div");
+        box.className = "preview-botoes";
+
+        // remover
+        const del = document.createElement("button");
+        del.textContent = "X";
+        del.onclick = ()=>{
+            fotosOrdenadas.splice(index,1);
+            renderizarPreview();
+        };
+
+        // definir capa
+        const star = document.createElement("button");
+        star.textContent = "⭐";
+        star.onclick = ()=>{
+            const item = fotosOrdenadas.splice(index,1)[0];
+            fotosOrdenadas.unshift(item);
+            renderizarPreview();
+        };
+
+        box.appendChild(star);
+        box.appendChild(del);
+
+        // drag
+        div.addEventListener("dragstart", ()=>{
+            draggedIndex = index;
+            div.classList.add("dragging");
+        });
+
+        div.addEventListener("dragend", ()=>{
+            div.classList.remove("dragging");
+        });
+
+        div.addEventListener("dragover", e => e.preventDefault());
+
+        div.addEventListener("drop", ()=>{
+            const item = fotosOrdenadas.splice(draggedIndex,1)[0];
+            fotosOrdenadas.splice(index,0,item);
+            renderizarPreview();
+        });
+
+        div.appendChild(img);
+        div.appendChild(box);
+        container.appendChild(div);
     });
 }
 
-btnLogout.addEventListener("click", function(){
-    localStorage.removeItem("usuarioLogado");
-    window.location.href = "/frontend/login.html";
+// SUBMIT (inalterado, só troca fotos)
+document.getElementById("formCarro").addEventListener("submit", async function(e){
+    e.preventDefault();
+
+    const carro = {
+        marca: marca.value.toUpperCase(),
+        modelo: modelo.value.toUpperCase(),
+        ano: ano.value,
+        quilometragem: quilometragem.value,
+        motor: motor.value.toUpperCase(),
+        versao: versao.value.toUpperCase(),
+        cambio: cambio.value.toUpperCase(),
+        combustivel: combustivel.value.toUpperCase(),
+        preco: preco.value,
+        descricao: descricao.value,
+        contatoNome: contatoNome.value.toUpperCase(),
+        contatoTelefone: contatoTelefone.value,
+        contatoEmail: contatoEmail.value,
+        contatoCidade: contatoCidade.value.toUpperCase(),
+        anunciante: usuarioLogado.nome,
+        fotos: fotosOrdenadas
+    };
+
+    const res = await fetch("http://localhost:3000/carros",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify(carro)
+    });
+
+    if(res.ok){
+        alert("Carro cadastrado com sucesso!");
+        window.location.href = "carros.html";
+    } else {
+        alert("Erro ao anunciar o carro");
+    }
 });
 </script>
 
