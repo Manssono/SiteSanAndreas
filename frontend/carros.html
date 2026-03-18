@@ -49,14 +49,30 @@
 <div class="pagina-carros">
     <aside class="filtros">
         <h2>Filtros</h2>
+
         <label>Marca</label>
         <select id="filtroMarca">
             <option>Todos</option>
         </select>
+
+        <!-- NOVO -->
+        <label>Modelo</label>
+        <select id="filtroModelo" disabled>
+            <option>Todos</option>
+        </select>
+
+        <!-- NOVO -->
+        <label>Motor</label>
+        <select id="filtroMotor" disabled>
+            <option>Todos</option>
+        </select>
+
         <label>Ano</label>
         <input type="number" id="filtroAno" placeholder="A partir de">
+
         <label>Preço máximo</label>
         <input type="number" id="filtroPreco" placeholder="R$">
+
         <button class="btn-filtrar" id="btnFiltrar">Aplicar</button>
     </aside>
 
@@ -65,10 +81,9 @@
     </div>
 </div>
 
-
-
-<!-- SCRIPT -->
 <script>
+let listaCarros = [];
+
 const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
 const linkUsuario = document.getElementById("linkUsuario");
 const menuConta = document.getElementById("menuConta");
@@ -89,7 +104,7 @@ btnLogout.addEventListener("click", function(){
     window.location.href = "/frontend/login.html";
 });
 
-// Função para criar o HTML de cada carro
+// HTML do carro
 function criarCarroHTML(carro){
     return `
     <div class="blococarro" style="position: relative; top: 20px;">
@@ -105,47 +120,103 @@ function criarCarroHTML(carro){
     </div>`;
 }
 
-// Função para carregar carros
+// carregar carros
 async function carregarCarros(){
     try {
         const resposta = await fetch("http://localhost:3000/carros");
-        const carros = await resposta.json();
+        listaCarros = await resposta.json();
 
         const container = document.getElementById("containerCarros");
-        container.innerHTML = carros.map(criarCarroHTML).join("");
+        container.innerHTML = listaCarros.map(criarCarroHTML).join("");
 
-        // popular filtro de marcas
         const selectMarca = document.getElementById("filtroMarca");
-        const marcas = [...new Set(carros.map(c => c.marca))];
+        const marcas = [...new Set(listaCarros.map(c => c.marca))];
+
         marcas.forEach(m => {
             const option = document.createElement("option");
             option.textContent = m;
             selectMarca.appendChild(option);
         });
+
     } catch(erro){
         console.error("Erro ao carregar carros:", erro);
     }
 }
 
-// Filtro
-document.getElementById("btnFiltrar").addEventListener("click", async function(){
-    const marca = document.getElementById("filtroMarca").value;
+// filtros encadeados
+const selectMarca = document.getElementById("filtroMarca");
+const selectModelo = document.getElementById("filtroModelo");
+const selectMotor = document.getElementById("filtroMotor");
+
+selectMarca.addEventListener("change", () => {
+    const marca = selectMarca.value;
+
+    selectModelo.innerHTML = '<option>Todos</option>';
+    selectMotor.innerHTML = '<option>Todos</option>';
+    selectMotor.disabled = true;
+
+    if (marca === "Todos") {
+        selectModelo.disabled = true;
+        return;
+    }
+
+    const modelos = [...new Set(
+        listaCarros.filter(c => c.marca === marca).map(c => c.modelo)
+    )];
+
+    modelos.forEach(modelo => {
+        const option = document.createElement("option");
+        option.textContent = modelo;
+        selectModelo.appendChild(option);
+    });
+
+    selectModelo.disabled = false;
+});
+
+selectModelo.addEventListener("change", () => {
+    const marca = selectMarca.value;
+    const modelo = selectModelo.value;
+
+    selectMotor.innerHTML = '<option>Todos</option>';
+
+    if (modelo === "Todos") {
+        selectMotor.disabled = true;
+        return;
+    }
+
+    const motores = [...new Set(
+        listaCarros
+            .filter(c => c.marca === marca && c.modelo === modelo)
+            .map(c => c.motor)
+    )];
+
+    motores.forEach(motor => {
+        const option = document.createElement("option");
+        option.textContent = motor;
+        selectMotor.appendChild(option);
+    });
+
+    selectMotor.disabled = false;
+});
+
+// aplicar filtro
+document.getElementById("btnFiltrar").addEventListener("click", function(){
+    const marca = selectMarca.value;
+    const modelo = selectModelo.value;
+    const motor = selectMotor.value;
     const ano = document.getElementById("filtroAno").value;
     const preco = document.getElementById("filtroPreco").value;
 
-    try {
-        const resposta = await fetch("http://localhost:3000/carros");
-        let carros = await resposta.json();
+    let carros = [...listaCarros];
 
-        if(marca !== "Todos") carros = carros.filter(c => c.marca === marca);
-        if(ano) carros = carros.filter(c => c.ano >= ano);
-        if(preco) carros = carros.filter(c => parseFloat(c.preco) <= preco);
+    if(marca !== "Todos") carros = carros.filter(c => c.marca === marca);
+    if(modelo !== "Todos") carros = carros.filter(c => c.modelo === modelo);
+    if(motor !== "Todos") carros = carros.filter(c => c.motor === motor);
+    if(ano) carros = carros.filter(c => c.ano >= ano);
+    if(preco) carros = carros.filter(c => parseFloat(c.preco) <= preco);
 
-        const container = document.getElementById("containerCarros");
-        container.innerHTML = carros.map(criarCarroHTML).join("");
-    } catch(erro){
-        console.error("Erro ao filtrar carros:", erro);
-    }
+    const container = document.getElementById("containerCarros");
+    container.innerHTML = carros.map(criarCarroHTML).join("");
 });
 
 carregarCarros();

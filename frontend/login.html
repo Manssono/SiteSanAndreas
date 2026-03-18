@@ -6,7 +6,6 @@
 <title>Login - Southern San Andreas Super Autos</title>
 
 <link rel="stylesheet" href="style.css">
-
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
@@ -29,7 +28,6 @@
             <input type="password" id="senhaLogin" placeholder="Digite sua senha" required>
         </div>
 
-        <!-- Botão de submit em vez do <a> -->
         <button type="submit" class="btn-login">Entrar</button>
 
         <p class="texto-cadastro">
@@ -49,25 +47,31 @@ document.getElementById("formLogin").addEventListener("submit", async function(e
     const senha = document.getElementById("senhaLogin").value;
 
     try {
-        // Pega todos os usuários cadastrados (GET /usuarios)
-        const resposta = await fetch("http://localhost:3000/usuarios");
-        const usuarios = await resposta.json();
+        const resposta = await fetch("http://localhost:3000/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, senha })
+        });
 
-        // Verifica se o email e senha existem
-        const usuario = usuarios.find(u => u.email === email && u.senha === senha);
+        const dados = await resposta.json();
 
-        if(usuario){
+        if (resposta.ok) {
             alert("Login realizado com sucesso!");
-            localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
-            // Redireciona para a página inicial
+
+            // salva usuário logado
+            localStorage.setItem("usuarioLogado", JSON.stringify(dados.usuario));
+
+            // redireciona
             window.location.href = "index.html";
 
         } else {
-            alert("Email ou senha incorretos!");
+            alert(dados.erro || "Erro ao fazer login");
         }
 
-    } catch(err){
-        console.error("Erro ao conectar ao servidor:", err);
+    } catch (err) {
+        console.error("Erro:", err);
         alert("Não foi possível conectar ao servidor.");
     }
 });
